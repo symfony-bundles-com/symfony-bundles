@@ -1,6 +1,6 @@
 # DEDICATED TO THE PUBLIC DOMAIN
 
-Symfony-Bundles.com has been dedicated to the public domain. It is protected by the Creative Commons CC0 Universal Public Domain Dedication license. You can read the entire license below or at http://creativecommons.org/publicdomain/zero/1.0/deed.en.
+Symfony-bundles has been dedicated to the public domain. It is protected by the Creative Commons CC0 Universal Public Domain Dedication license. You can read the entire license below or at http://creativecommons.org/publicdomain/zero/1.0/deed.en.
 
 # CC0 UNIVERSAL PUBLIC DOMAIN DEDICATION LICENSE
 
