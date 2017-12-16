@@ -9,5 +9,5 @@ easy_admin:
         title: 'Search result for %%entity_label%%'
     entities:
         Bundle:
-            class: App\Entity\Bundle
+            class: App\Entity\Package
             label: 'Bundles'
