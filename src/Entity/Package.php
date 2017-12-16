@@ -1,12 +1,22 @@
 <?php
-
+/**
+ * This file is part of the Symfony-Bundles.com project
+ * https://github.com/wow-apps/symfony-bundles
+ *
+ * (c) 2017 WoW-Apps
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Package
- * @package App\Entity
+ *
+ * @author Alexey Samara <lion.samara@gmail.com>
+ * @package wow-apps/symfony-bundles
  * @ORM\Table(
  *     name="sb_packages",
  *     options={"collate"="utf8_unicode_ci", "charset"="utf8", "engine"="InnoDB"},

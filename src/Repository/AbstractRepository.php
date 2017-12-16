@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: alexeysamara
- * Date: 16.12.2017
- * Time: 18:31
+ * This file is part of the Symfony-Bundles.com project
+ * https://github.com/wow-apps/symfony-bundles
+ *
+ * (c) 2017 WoW-Apps
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Repository;
@@ -13,6 +16,12 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
 
+/**
+ * Class AbstractRepository
+ *
+ * @author Alexey Samara <lion.samara@gmail.com>
+ * @package wow-apps/symfony-bundles
+ */
 abstract class AbstractRepository extends EntityRepository
 {
     /** @var PDOConnection */
