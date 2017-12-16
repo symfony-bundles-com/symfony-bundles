@@ -18,7 +18,9 @@ easy_admin:
         Package:
             class: App\Entity\Package
             label: 'Packages'
+            disabled_actions: ['edit', 'new', 'delete']
             list:
+                actions: ['show']
                 sort: ['updatedAt', 'DESC']
                 fields:
                     - { property: 'id', label: 'ID', css_class: 'text-center', type: 'integer', sortable: true }

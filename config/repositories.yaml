@@ -1,0 +1,5 @@
+services:
+    app.repository.package:
+        class: App\Repository\PackageRepository
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        arguments: ['App\Entity\Package']

@@ -19,6 +19,8 @@ class Package
     const TABLE_NAME = 'sb_packages';
 
     /**
+     * Internal package identifier
+     *
      * @var integer
      * @ORM\Column(name="id", type="integer", length=11)
      * @ORM\Id
@@ -27,6 +29,8 @@ class Package
     private $id = 0;
 
     /**
+     * Package identifier on Packagist.org
+     *
      * @var string
      * @ORM\Column(name="package_id", type="string", nullable=false, length=255)
      */

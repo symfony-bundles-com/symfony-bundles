@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-class PackageRepository
+class PackageRepository extends AbstractRepository
 {
 
 }
