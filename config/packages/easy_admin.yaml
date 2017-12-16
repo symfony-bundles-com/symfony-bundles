@@ -1,0 +1,13 @@
+easy_admin:
+    site_name: 'Symfony-Bundles'
+    design:
+        brand_color: '#7ABA20'
+        color_scheme: 'dark'
+    list:
+        title: 'List of %%entity_label%%'
+    search:
+        title: 'Search result for %%entity_label%%'
+    entities:
+        Bundle:
+            class: App\Entity\Bundle
+            label: 'Bundles'
