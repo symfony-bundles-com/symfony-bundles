@@ -1,5 +1,9 @@
 easy_admin:
     site_name: 'Symfony-Bundles'
+    formats:
+        date: 'Y-m-d'
+        time: 'H:i'
+        datetime: 'Y-m-d H:i:s'
     design:
         brand_color: '#7ABA20'
         color_scheme: 'dark'
@@ -15,4 +19,12 @@ easy_admin:
             class: App\Entity\Package
             label: 'Packages'
             list:
-                fields: ['id', 'packageId', 'version', 'title', 'statInstalls', 'addedAt', 'updatedAt']
+                sort: ['updatedAt', 'DESC']
+                fields:
+                    - { property: 'id', label: 'ID', css_class: 'text-center', type: 'integer', sortable: true }
+                    - { property: 'packageID', label: 'Package', css_class: 'text-left', type: 'string', sortable: false }
+                    - { property: 'title', label: 'Title', css_class: 'text-left', type: 'string', sortable: false }
+                    - { property: 'version', label: 'Version', css_class: 'text-center', type: 'string', sortable: false }
+                    - { property: 'statInstalls', label: 'Installs', css_class: 'text-center', type: 'integer', sortable: true }
+                    - { property: 'addedAt', label: 'Added', css_class: 'text-center', type: 'datetime', sortable: true }
+                    - { property: 'updatedAt', label: 'Updated', css_class: 'text-center', type: 'datetime', sortable: true }

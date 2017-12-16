@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Class Package
@@ -106,16 +105,16 @@ class Package
     private $statIssues = 0;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      * @ORM\Column(name="added_at", type="datetime", nullable=true)
      */
-    private $addedAt = 0;
+    private $addedAt;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    private $updatedAt = 0;
+    private $updatedAt;
 
     /**
      * @return int
@@ -370,36 +369,36 @@ class Package
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
-    public function getAddedAt(): DateTime
+    public function getAddedAt(): \DateTime
     {
-        return $this->addedAt;
+        return $this->addedAt ?? new \DateTime();
     }
 
     /**
-     * @param DateTime $addedAt
+     * @param \DateTime $addedAt
      * @return Package
      */
-    public function setAddedAt(DateTime $addedAt): Package
+    public function setAddedAt(\DateTime $addedAt): Package
     {
         $this->addedAt = $addedAt;
         return $this;
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): \DateTime
     {
-        return $this->updatedAt;
+        return $this->updatedAt ?? new \DateTime();
     }
 
     /**
-     * @param DateTime $updatedAt
+     * @param \DateTime $updatedAt
      * @return Package
      */
-    public function setUpdatedAt(DateTime $updatedAt): Package
+    public function setUpdatedAt(\DateTime $updatedAt): Package
     {
         $this->updatedAt = $updatedAt;
         return $this;
