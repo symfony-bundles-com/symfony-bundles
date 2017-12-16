@@ -5,9 +5,14 @@ easy_admin:
         color_scheme: 'dark'
     list:
         title: 'List of %%entity_label%%'
+        max_results: 50
+    show:
+        title: '%%entity_label%% (#%%entity_id%%)'
     search:
-        title: 'Search result for %%entity_label%%'
+        title: 'Search in %%entity_label%%'
     entities:
-        Bundle:
+        Package:
             class: App\Entity\Package
-            label: 'Bundles'
+            label: 'Packages'
+            list:
+                fields: ['id', 'packageId', 'version', 'title', 'statInstalls', 'addedAt', 'updatedAt']

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Class Package
@@ -24,85 +25,97 @@ class Package
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $id = 0;
 
     /**
      * @var string
      * @ORM\Column(name="package_id", type="string", nullable=false, length=255)
      */
-    private $packageId;
+    private $packageId = '';
 
     /**
      * @var string
      * @ORM\Column(name="version", type="string", nullable=true, length=25)
      */
-    private $version;
+    private $version = '';
 
     /**
      * @var string
      * @ORM\Column(name="title", type="string", nullable=true, length=255)
      */
-    private $title;
+    private $title = '';
 
     /**
      * @var string
      * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description;
+    private $description = '';
 
     /**
      * @var string
-     * @ORM\Column(name="description_clean", type="string", nullable=true)
+     * @ORM\Column(name="description_clean", type="text", nullable=true)
      */
-    private $descriptionClean;
+    private $descriptionClean = '';
 
     /**
      * @var string
      * @ORM\Column(name="author", type="string", nullable=true, length=255)
      */
-    private $author;
+    private $author = '';
 
     /**
      * @var int
      * @ORM\Column(name="stat_installs", type="integer", nullable=true, options={"default":0}, length=11)
      */
-    private $statInstalls;
+    private $statInstalls = 0;
 
     /**
      * @var int
      * @ORM\Column(name="stat_dependents", type="integer", nullable=true, options={"default":0}, length=11)
      */
-    private $statDependents;
+    private $statDependents = 0;
 
     /**
      * @var int
      * @ORM\Column(name="stat_suggesters", type="integer", nullable=true, options={"default":0}, length=11)
      */
-    private $statSuggesters;
+    private $statSuggesters = 0;
 
     /**
      * @var int
      * @ORM\Column(name="stat_stars", type="integer", nullable=true, options={"default":0}, length=11)
      */
-    private $statStars;
+    private $statStars = 0;
 
     /**
      * @var int
      * @ORM\Column(name="stat_watchers", type="integer", nullable=true, options={"default":0}, length=11)
      */
-    private $statWatchers;
+    private $statWatchers = 0;
 
     /**
      * @var int
      * @ORM\Column(name="stat_forks", type="integer", nullable=true, options={"default":0}, length=11)
      */
-    private $statForks;
+    private $statForks = 0;
 
     /**
      * @var int
      * @ORM\Column(name="stat_issues", type="integer", nullable=true, options={"default":0}, length=11)
      */
-    private $statIssues;
+    private $statIssues = 0;
+
+    /**
+     * @var DateTime
+     * @ORM\Column(name="added_at", type="datetime", nullable=true)
+     */
+    private $addedAt = 0;
+
+    /**
+     * @var DateTime
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt = 0;
 
     /**
      * @return int
@@ -353,6 +366,42 @@ class Package
     public function setStatIssues(int $statIssues): Package
     {
         $this->statIssues = $statIssues;
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getAddedAt(): DateTime
+    {
+        return $this->addedAt;
+    }
+
+    /**
+     * @param DateTime $addedAt
+     * @return Package
+     */
+    public function setAddedAt(DateTime $addedAt): Package
+    {
+        $this->addedAt = $addedAt;
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime $updatedAt
+     * @return Package
+     */
+    public function setUpdatedAt(DateTime $updatedAt): Package
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 }
