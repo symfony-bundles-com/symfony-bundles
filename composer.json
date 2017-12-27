@@ -43,10 +43,11 @@
         "wow-apps/symfony-packagist": "^1"
     },
     "require-dev": {
-        "symfony/dotenv": "^4.0",
         "phpunit/phpunit": "^6.5",
-        "symfony/phpunit-bridge": "^4.0",
-        "squizlabs/php_codesniffer": "^3.2"
+        "squizlabs/php_codesniffer": "^3.2",
+        "symfony/dotenv": "^4.0",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^4.0"
     },
     "config": {
         "preferred-install": {
