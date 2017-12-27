@@ -1,25 +1,32 @@
 {
-    "name": "wow-apps/symfony-bundles",
+    "name": "symfony-bundles-com/symfony-bundles",
     "description" : "Search engine for Symfony Bundles",
     "type": "project",
     "license": "MIT",
-    "homepage": "https://github.com/wow-apps/symfony-proxybonanza",
+    "homepage": "https://github.com/symfony-bundles-com/symfony-bundles",
     "authors" : [
       {
         "name" : "Alexey Samara",
-        "role": "lead",
+        "role": "Lead",
         "email" : "lion.samara@gmail.com",
         "homepage": "https://wow-apps.pro"
+      },
+      {
+        "name" : "Alexander Erin",
+        "role": "Developer",
+        "email" : "larrya65@gmail.com",
+        "homepage": "https://github.com/larry27"
       }
     ],
     "support": {
-      "issues": "https://github.com/wow-apps/symfony-bundles/issues",
-      "wiki": "https://github.com/wow-apps/symfony-bundles/wiki",
-      "source": "https://github.com/wow-apps/symfony-bundles"
+      "issues": "https://github.com/symfony-bundles-com/symfony-bundles/issues",
+      "wiki": "https://github.com/symfony-bundles-com/symfony-bundles/wiki",
+      "source": "https://github.com/symfony-bundles-com/symfony-bundles"
     },
     "keywords" : [
       "symfony",
-      "bundles"
+      "bundles",
+      "search"
     ],
     "require": {
         "php": "^7.1.3",
@@ -32,7 +39,8 @@
         "symfony/web-server-bundle": "^4.0",
         "symfony/yaml": "^4.0",
         "doctrine/doctrine-migrations-bundle": "^1.3",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "wow-apps/symfony-packagist": "^1"
     },
     "require-dev": {
         "symfony/dotenv": "^4.0",
