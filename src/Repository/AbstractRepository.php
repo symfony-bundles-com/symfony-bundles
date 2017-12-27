@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of the Symfony-Bundles.com project
- * https://github.com/wow-apps/symfony-bundles
+ * https://github.com/symfony-bundles-com/symfony-bundles
  *
  * (c) 2017 WoW-Apps
  *
@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping;
  * Class AbstractRepository
  *
  * @author Alexey Samara <lion.samara@gmail.com>
- * @package wow-apps/symfony-bundles
+ * @package symfony-bundles-com/symfony-bundles
  */
 abstract class AbstractRepository extends EntityRepository
 {
