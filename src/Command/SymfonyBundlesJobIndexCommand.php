@@ -16,7 +16,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use WowApps\PackagistBundle\Service\ApiProvider;
 use WowApps\PackagistBundle\Service\Packagist;
 
 /**
@@ -30,12 +29,27 @@ class SymfonyBundlesJobIndexCommand extends Command
     /** @var string */
     protected static $defaultName = 'symfony-bundles:packages:index';
 
+    /** @var Packagist */
+    private $packagist;
+
     /**
      * {@inheritdoc}
      */
     protected function configure()
     {
         $this->setDescription('Search packages and update information');
+    }
+
+    /**
+     * SymfonyBundlesJobIndexCommand constructor.
+     *
+     * @param null|string $name
+     * @param Packagist $packagist
+     */
+    public function __construct(?string $name = null, Packagist $packagist)
+    {
+        parent::__construct($name);
+        $this->packagist = $packagist;
     }
 
     /**
@@ -47,13 +61,7 @@ class SymfonyBundlesJobIndexCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $packagist =  new Packagist(
-            new ApiProvider()
-        );
 
-        $packages = $packagist->getPackageList(null, 'symfony-bundle');
-
-        $io->listing($packages);
 
         $io->success('Done');
     }

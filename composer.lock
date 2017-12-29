@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df090475a980315ec86200c91b9731e3",
+    "content-hash": "bd14824a492fa14d08976ed8248e5b8c",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2361,16 +2361,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.0.52",
+            "version": "v1.0.53",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "861a98056cad02a3a18b778404dee1427bd4a30d"
+                "reference": "cc4b1bac464597ce220d4f8208c38c75195e80c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/861a98056cad02a3a18b778404dee1427bd4a30d",
-                "reference": "861a98056cad02a3a18b778404dee1427bd4a30d",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/cc4b1bac464597ce220d4f8208c38c75195e80c2",
+                "reference": "cc4b1bac464597ce220d4f8208c38c75195e80c2",
                 "shasum": ""
             },
             "require": {
@@ -2403,7 +2403,7 @@
                     "email": "fabien.potencier@gmail.com"
                 }
             ],
-            "time": "2017-12-20T19:26:56+00:00"
+            "time": "2017-12-27T16:06:01+00:00"
         },
         {
             "name": "symfony/form",
@@ -4039,16 +4039,16 @@
         },
         {
             "name": "wow-apps/symfony-packagist",
-            "version": "1.1.2",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wow-apps/symfony-packagist.git",
-                "reference": "75b5982beec28d137c9020cd8d67ba717429c225"
+                "reference": "091d9d38ec2daa008eebd37efb0634d38ff2e0b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wow-apps/symfony-packagist/zipball/75b5982beec28d137c9020cd8d67ba717429c225",
-                "reference": "75b5982beec28d137c9020cd8d67ba717429c225",
+                "url": "https://api.github.com/repos/wow-apps/symfony-packagist/zipball/091d9d38ec2daa008eebd37efb0634d38ff2e0b8",
+                "reference": "091d9d38ec2daa008eebd37efb0634d38ff2e0b8",
                 "shasum": ""
             },
             "require": {
@@ -4085,7 +4085,7 @@
                 "symfony3",
                 "symfony4"
             ],
-            "time": "2017-12-22T15:29:53+00:00"
+            "time": "2017-12-29T12:47:20+00:00"
         },
         {
             "name": "zendframework/zend-code",
