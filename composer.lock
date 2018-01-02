@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd14824a492fa14d08976ed8248e5b8c",
+    "content-hash": "0930fb255325a2f4e5f3b8735c206a56",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -4039,16 +4039,16 @@
         },
         {
             "name": "wow-apps/symfony-packagist",
-            "version": "1.3.0",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wow-apps/symfony-packagist.git",
-                "reference": "091d9d38ec2daa008eebd37efb0634d38ff2e0b8"
+                "reference": "cdb58ea0b9f993552deff1b3b5b7c5216487e666"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wow-apps/symfony-packagist/zipball/091d9d38ec2daa008eebd37efb0634d38ff2e0b8",
-                "reference": "091d9d38ec2daa008eebd37efb0634d38ff2e0b8",
+                "url": "https://api.github.com/repos/wow-apps/symfony-packagist/zipball/cdb58ea0b9f993552deff1b3b5b7c5216487e666",
+                "reference": "cdb58ea0b9f993552deff1b3b5b7c5216487e666",
                 "shasum": ""
             },
             "require": {
@@ -4085,7 +4085,7 @@
                 "symfony3",
                 "symfony4"
             ],
-            "time": "2017-12-29T12:47:20+00:00"
+            "time": "2018-01-02T03:57:31+00:00"
         },
         {
             "name": "zendframework/zend-code",

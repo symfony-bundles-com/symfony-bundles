@@ -11,12 +11,11 @@
 
 namespace App\Command;
 
-use App\Entity\Package;
+use App\Services\PackagistApi;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use WowApps\PackagistBundle\Service\Packagist;
 
 /**
  * Class SymfonyBundlesJobIndexCommand
@@ -29,8 +28,8 @@ class SymfonyBundlesJobIndexCommand extends Command
     /** @var string */
     protected static $defaultName = 'symfony-bundles:packages:index';
 
-    /** @var Packagist */
-    private $packagist;
+    /** @var PackagistApi */
+    private $packagistApi;
 
     /**
      * {@inheritdoc}
@@ -42,14 +41,13 @@ class SymfonyBundlesJobIndexCommand extends Command
 
     /**
      * SymfonyBundlesJobIndexCommand constructor.
-     *
      * @param null|string $name
-     * @param Packagist $packagist
+     * @param PackagistApi $packagistApi
      */
-    public function __construct(?string $name = null, Packagist $packagist)
+    public function __construct(?string $name = null, PackagistApi $packagistApi)
     {
         parent::__construct($name);
-        $this->packagist = $packagist;
+        $this->packagistApi = $packagistApi;
     }
 
     /**
@@ -61,7 +59,7 @@ class SymfonyBundlesJobIndexCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-
+        $this->packagistApi->indexPackagesJob();
 
         $io->success('Done');
     }

@@ -18,5 +18,20 @@ namespace App\Repository;
  */
 class PackageRepository extends AbstractRepository
 {
+    const TABLE_NAME = 'sb_packages';
 
+    public function getExistsPackagesIds(): array
+    {
+        $sql = sprintf(
+            "SELECT package_id FROM %s",
+            self::TABLE_NAME
+        );
+
+        try {
+            return $this->sqlRequest($sql);
+        } catch (\Exception $e) {
+            return [];
+        }
+
+    }
 }
