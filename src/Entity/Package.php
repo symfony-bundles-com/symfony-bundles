@@ -130,6 +130,11 @@ class Package
      */
     private $updatedAt;
 
+    public function __construct(string $packageId)
+    {
+        $this->setPackageId($packageId);
+    }
+
     /**
      * @return int
      */
