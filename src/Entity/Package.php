@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of the Symfony-Bundles.com project
- * https://github.com/wow-apps/symfony-bundles
+ * https://github.com/symfony-bundles-com/symfony-bundles
  *
  * (c) 2017 WoW-Apps
  *
@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Package
  *
  * @author Alexey Samara <lion.samara@gmail.com>
- * @package wow-apps/symfony-bundles
+ * @package symfony-bundles-com/symfony-bundles
  * @ORM\Table(
  *     name="sb_packages",
  *     options={"collate"="utf8_unicode_ci", "charset"="utf8", "engine"="InnoDB"},
@@ -129,6 +129,11 @@ class Package
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    public function __construct(string $packageId)
+    {
+        $this->setPackageId($packageId);
+    }
 
     /**
      * @return int
