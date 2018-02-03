@@ -29,7 +29,7 @@ class Version20171216152212 extends AbstractMigration
               stat_watchers     INT DEFAULT '0'                    NULL,
               stat_forks        INT DEFAULT '0'                    NULL,
               stat_issues       INT DEFAULT '0'                    NULL,
-              added_at          DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+              added_at          DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
               updated_at        DATETIME                           NULL,
               CONSTRAINT sb_packages_package_id_uindex
               UNIQUE (package_id)

@@ -8,7 +8,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace App\Repository;
+
+use App\Entity\Package;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class PackageRepository
@@ -16,22 +21,47 @@ namespace App\Repository;
  * @author Alexey Samara <lion.samara@gmail.com>
  * @package symfony-bundles-com/symfony-bundles
  */
-class PackageRepository extends AbstractRepository
+class PackageRepository extends ServiceEntityRepository
 {
     const TABLE_NAME = 'sb_packages';
 
+    /**
+     * PackageRepository constructor.
+     * @param RegistryInterface $registry
+     */
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Package::class);
+    }
+
+    /**
+     * @return array
+     */
     public function getExistsPackagesIds(): array
     {
-        $sql = sprintf(
-            "SELECT package_id FROM %s",
-            self::TABLE_NAME
-        );
+        $qbResult = $this
+            ->createQueryBuilder('p')
+            ->select('p.packageId')
+            ->orderBy('p.packageId', 'ASC')
+            ->getQuery()
+            ->getArrayResult()
+        ;
 
-        try {
-            return $this->sqlRequest($sql);
-        } catch (\Exception $e) {
-            return [];
+        return array_column($qbResult, 'packageId');
+    }
+
+    /**
+     * @param array $packagesId
+     */
+    public function insertNewPackagesId(array $packagesId)
+    {
+        $em = $this->getEntityManager();
+
+        foreach ($packagesId as $packageId) {
+            $package = new Package($packageId);
+            $em->persist($package);
         }
 
+        $em->flush();
     }
 }

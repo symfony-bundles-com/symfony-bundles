@@ -1,5 +1,5 @@
 easy_admin:
-    site_name: 'Symfony-Bundles'
+    site_name: "<img src='/assets/favicon.png' style='width:24px'>&nbsp;Symfony-Bundles"
     formats:
         date: 'Y-m-d'
         time: 'H:i'
@@ -7,6 +7,8 @@ easy_admin:
     design:
         brand_color: '#7ABA20'
         color_scheme: 'dark'
+        assets:
+            favicon: '/assets/favicon.png'
     list:
         title: 'List of %%entity_label%%'
         max_results: 50
