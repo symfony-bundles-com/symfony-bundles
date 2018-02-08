@@ -52,6 +52,8 @@ class PackageRepository extends ServiceEntityRepository
 
     /**
      * @param array $packagesId
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function insertNewPackagesId(array $packagesId)
     {

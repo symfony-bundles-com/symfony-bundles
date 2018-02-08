@@ -119,6 +119,30 @@ class Package
     private $statIssues = 0;
 
     /**
+     * @var bool
+     * @ORM\Column(name="symfony_1", type="boolean")
+     */
+    private $symfony1;
+
+    /**
+     * @var bool
+     * @ORM\Column(name="symfony_2", type="boolean")
+     */
+    private $symfony2;
+
+    /**
+     * @var bool
+     * @ORM\Column(name="symfony_3", type="boolean")
+     */
+    private $symfony3;
+
+    /**
+     * @var bool
+     * @ORM\Column(name="symfony_4", type="boolean")
+     */
+    private $symfony4;
+
+    /**
      * @var \DateTime
      * @ORM\Column(name="added_at", type="datetime", nullable=true)
      */
@@ -384,6 +408,78 @@ class Package
     public function setStatIssues(int $statIssues): Package
     {
         $this->statIssues = $statIssues;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSymfony1(): bool
+    {
+        return $this->symfony1;
+    }
+
+    /**
+     * @param bool $symfony1
+     * @return Package
+     */
+    public function setSymfony1(bool $symfony1): Package
+    {
+        $this->symfony1 = $symfony1;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSymfony2(): bool
+    {
+        return $this->symfony2;
+    }
+
+    /**
+     * @param bool $symfony2
+     * @return Package
+     */
+    public function setSymfony2(bool $symfony2): Package
+    {
+        $this->symfony2 = $symfony2;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSymfony3(): bool
+    {
+        return $this->symfony3;
+    }
+
+    /**
+     * @param bool $symfony3
+     * @return Package
+     */
+    public function setSymfony3(bool $symfony3): Package
+    {
+        $this->symfony3 = $symfony3;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSymfony4(): bool
+    {
+        return $this->symfony4;
+    }
+
+    /**
+     * @param bool $symfony4
+     * @return Package
+     */
+    public function setSymfony4(bool $symfony4): Package
+    {
+        $this->symfony4 = $symfony4;
         return $this;
     }
 
