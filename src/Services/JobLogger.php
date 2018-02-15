@@ -54,7 +54,47 @@ class JobLogger
             throw new InvalidArgumentException('Invalid log level');
         }
 
+        $additional = [
+            'date_time' => date('Y-m-d H:i:s')
+        ];
 
+        $this->monologLog($logLevel, $logMessage, $additional);
+    }
+
+    /**
+     * @param int $logLevel
+     * @param string $logMessage
+     * @param array $additional
+     */
+    private function monologLog(int $logLevel, string $logMessage, array $additional)
+    {
+        switch ($logLevel) {
+            case self::LOG_LEVEL_EMERGENCY:
+                $this->logger->emergency($logMessage, $additional);
+                break;
+            case self::LOG_LEVEL_ALERT:
+                $this->logger->alert($logMessage, $additional);
+                break;
+            case self::LOG_LEVEL_CRITICAL:
+                $this->logger->critical($logMessage, $additional);
+                break;
+            case self::LOG_LEVEL_ERROR:
+                $this->logger->error($logMessage, $additional);
+                break;
+            case self::LOG_LEVEL_WARNING:
+                $this->logger->warning($logMessage, $additional);
+                break;
+            case self::LOG_LEVEL_NOTICE:
+                $this->logger->notice($logMessage, $additional);
+                break;
+            case self::LOG_LEVEL_INFO:
+                $this->logger->info($logMessage, $additional);
+                break;
+            case self::LOG_LEVEL_DEBUG:
+            default:
+                $this->logger->debug($logMessage, $additional);
+                break;
+        }
     }
 
     /**
