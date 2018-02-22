@@ -39,16 +39,16 @@ class SymfonyBundlesJobIndexCommand extends Command
         $this->setDescription('Search packages and update information');
     }
 
-    /**
-     * SymfonyBundlesJobIndexCommand constructor.
-     * @param null|string $name
-     * @param PackagistApi $packagistApi
-     */
-    public function __construct(?string $name = null, PackagistApi $packagistApi)
-    {
-        parent::__construct($name);
-        $this->packagistApi = $packagistApi;
-    }
+//    /**
+//     * SymfonyBundlesJobIndexCommand constructor.
+//     * @param null|string $name
+//     * @param PackagistApi $packagistApi
+//     */
+//    public function __construct(?string $name = null, PackagistApi $packagistApi)
+//    {
+//        parent::__construct($name);
+//        $this->packagistApi = $packagistApi;
+//    }
 
     /**
      * @param InputInterface $input

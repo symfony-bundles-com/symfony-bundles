@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of the Symfony-Bundles.com project
- * https://github.com/symfony-bundles-com/symfony-bundles
+ * https://github.com/wow-apps/symfony-bundles
  *
  * (c) 2017 WoW-Apps
  *
@@ -9,20 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Services;
+namespace App\Services\Jobs;
 
 use Psr\Log\LoggerInterface;
 use App\Repository\PackageRepository;
 use WowApps\PackagistBundle\Service\Packagist;
 
 /**
- * Class PackagistApi
+ * Class IndexPackages
  *
  * @author Alexey Samara <lion.samara@gmail.com>
  * @package wow-apps/symfony-bundles
  */
-class PackagistApi
+class IndexPackages implements JobInterface
 {
+    const JOB_NAME = 'index_packages';
+
     /** @var Packagist */
     private $packagist;
 
@@ -33,7 +35,7 @@ class PackagistApi
     private $logger;
 
     /**
-     * PackagistApi constructor.
+     * IndexPackages constructor.
      * @param Packagist $packagist
      * @param PackageRepository $packageRepository
      * @param LoggerInterface $logger
@@ -46,10 +48,28 @@ class PackagistApi
     }
 
     /**
+     * @return string
+     */
+    public function getJobName(): string
+    {
+        return self::JOB_NAME;
+    }
+
+    /**
+     * @return void
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function indexPackagesJob()
+    public function run()
+    {
+        $this->indexPackages();
+    }
+
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    private function indexPackages()
     {
         $this->logger->debug('Start getting exists packages id');
         $existsPackages = $this->packageRepository->getExistsPackagesIds();
