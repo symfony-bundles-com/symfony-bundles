@@ -9,15 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Services;
+namespace App\Exception;
+
+use Psr\Log\InvalidArgumentException;
 
 /**
- * Class RunJob
+ * Class JobException
  *
  * @author Alexey Samara <lion.samara@gmail.com>
  * @package wow-apps/symfony-bundles
  */
-class RunJob
+class JobException extends InvalidArgumentException
 {
-
+    const E_UNKNOWN_JOB = 'Unknown job called. Choose one of next: %s';
 }

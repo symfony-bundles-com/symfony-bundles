@@ -11,6 +11,7 @@
 
 namespace App\Services\Jobs;
 
+use App\Traits\TextHelperTrait;
 use Psr\Log\LoggerInterface;
 use App\Repository\PackageRepository;
 use WowApps\PackagistBundle\Service\Packagist;
@@ -23,6 +24,8 @@ use WowApps\PackagistBundle\Service\Packagist;
  */
 class IndexPackages implements JobInterface
 {
+    use TextHelperTrait;
+
     const JOB_NAME = 'index_packages';
 
     /** @var Packagist */
@@ -62,7 +65,19 @@ class IndexPackages implements JobInterface
      */
     public function run()
     {
+        $startTime = microtime(true);
+
+        $this->logger->info('Start job process', ['job_name' => $this->getJobName()]);
+
         $this->indexPackages();
+
+        $this->logger->info(
+            'Job process has finished',
+            [
+                'job_name'    => $this->getJobName(),
+                'passed_time' => $this->getFormattedTime($startTime)
+            ]
+        );
     }
 
     /**

@@ -11,11 +11,10 @@
 
 namespace App\Command;
 
-use App\Services\PackagistApi;
+use App\Services\Jobs\IndexPackages;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Class SymfonyBundlesJobIndexCommand
@@ -26,10 +25,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class SymfonyBundlesJobIndexCommand extends Command
 {
     /** @var string */
-    protected static $defaultName = 'symfony-bundles:packages:index';
+    protected static $defaultName = 'symfony-bundles:job:index';
 
-    /** @var PackagistApi */
-    private $packagistApi;
+    /** @var IndexPackages */
+    private $job;
 
     /**
      * {@inheritdoc}
@@ -39,30 +38,26 @@ class SymfonyBundlesJobIndexCommand extends Command
         $this->setDescription('Search packages and update information');
     }
 
-//    /**
-//     * SymfonyBundlesJobIndexCommand constructor.
-//     * @param null|string $name
-//     * @param PackagistApi $packagistApi
-//     */
-//    public function __construct(?string $name = null, PackagistApi $packagistApi)
-//    {
-//        parent::__construct($name);
-//        $this->packagistApi = $packagistApi;
-//    }
+    /**
+     * SymfonyBundlesJobIndexCommand constructor.
+     * @param null|string $name
+     * @param IndexPackages $job
+     */
+    public function __construct(?string $name = null, IndexPackages $job)
+    {
+        parent::__construct($name);
+        $this->job = $job;
+    }
 
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return void
+     * @return int|null|void
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = new SymfonyStyle($input, $output);
-
-        $this->packagistApi->indexPackagesJob();
-
-        $io->success('Done');
+        $this->job->run();
     }
 }
