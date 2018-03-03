@@ -52,16 +52,23 @@ class PackageRepository extends ServiceEntityRepository
 
     /**
      * @param array $packagesId
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function insertNewPackagesId(array $packagesId)
     {
         $em = $this->getEntityManager();
 
-        foreach ($packagesId as $packageId) {
-            $package = new Package($packageId);
-            $em->persist($package);
-        }
+        $packagesIdChunks = array_chunk($packagesId, 100);
 
-        $em->flush();
+        foreach ($packagesIdChunks as $chunk) {
+            foreach ($chunk as $packageId) {
+                $package = new Package($packageId);
+                $package->setAddedAt(new \DateTime(date('Y-m-d H:i:s')));
+                $em->persist($package);
+            }
+
+            $em->flush();
+        }
     }
 }
