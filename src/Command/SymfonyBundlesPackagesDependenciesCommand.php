@@ -11,10 +11,10 @@
 
 namespace App\Command;
 
+use App\Services\Jobs\GetDependencies;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Class SymfonyBundlesPackagesDependenciesCommand
@@ -23,7 +23,22 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class SymfonyBundlesPackagesDependenciesCommand extends Command
 {
-    protected static $defaultName = 'symfony-bundles:packages:dependencies';
+    /** @var string  */
+    protected static $defaultName = 'symfony-bundles:job:dependencies';
+
+    /** @var GetDependencies */
+    private $job;
+
+    /**
+     * SymfonyBundlesPackagesDependenciesCommand constructor.
+     * @param null|string $name
+     * @param GetDependencies $dependenciesJob
+     */
+    public function __construct(?string $name = null, GetDependencies $dependenciesJob)
+    {
+        parent::__construct($name);
+        $this->job = $dependenciesJob;
+    }
 
     /**
      * {@inheritdoc}
@@ -40,10 +55,6 @@ class SymfonyBundlesPackagesDependenciesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = new SymfonyStyle($input, $output);
-
-
-
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $this->job->execute();
     }
 }

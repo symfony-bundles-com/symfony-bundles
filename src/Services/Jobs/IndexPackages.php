@@ -63,7 +63,7 @@ class IndexPackages implements JobInterface
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function run()
+    public function execute()
     {
         $startTime = microtime(true);
 

@@ -11,12 +11,11 @@
 
 namespace App\Services;
 
-use App\Repository\PackageRepository;
 use GuzzleHttp\Client as GuzzleClient;
-use Psr\Log\LoggerInterface;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class GitHubApi
@@ -26,28 +25,33 @@ use GuzzleHttp\Psr7\Response;
 class GitHubApi
 {
     const POOL_CONCURRENCY = 50;
-    const COMPOSER_JSON_URL = "https://raw.githubusercontent.com/%s/master/composer.json";
-
-    /** @var PackageRepository */
-    private $packageRepository;
-
-    /** @var LoggerInterface */
-    private $logger;
+    const ALLOWED_STATUS_CODES = [200, 301, 302];
+    const RAW_FILE_URL = 'https://raw.githubusercontent.com/%s/master/%s';
 
     /** @var GuzzleClient */
     private $guzzleClient;
 
+    /** @var LoggerInterface */
+    private $logger;
+
     /**
      * GitHubApi constructor.
-     * @param PackageRepository $packageRepository
      * @param LoggerInterface $logger
-     * @param GuzzleClient $guzzle
      */
-    public function __construct(PackageRepository $packageRepository, LoggerInterface $logger, GuzzleClient $guzzle)
+    public function __construct(LoggerInterface $logger)
     {
-        $this->packageRepository = $packageRepository;
         $this->logger = $logger;
-        $this->guzzleClient = $guzzle;
+        $this->guzzleClient = new GuzzleClient();
+    }
+
+    /**
+     * @param string $packageId
+     * @param string $fileName
+     * @return string
+     */
+    public function generateRawFileUrl(string $packageId, string $fileName): string
+    {
+        return sprintf(self::RAW_FILE_URL, $packageId, $fileName);
     }
 
     /**
@@ -56,12 +60,24 @@ class GitHubApi
      * @param int $concurrency
      * @return array
      */
-    private function getBatchAPIResponse(array $urls, string $method, int $concurrency = self::POOL_CONCURRENCY): array
-    {
+    public function getBatchAPIResponse(
+        array $urls,
+        string $method = 'GET',
+        int $concurrency = self::POOL_CONCURRENCY
+    ): array {
         $requests = $this->createRequests($urls, $method);
         $responses = Pool::batch($this->guzzleClient, $requests, ['concurrency' => $concurrency]);
         /** @var Response $response */
         foreach ($responses as $key => $response) {
+            if (!in_array($response->getStatusCode(), self::ALLOWED_STATUS_CODES)) {
+                $this->logger->warning('Can\'t get file', [
+                    'file_url' => $urls[$key],
+                    'response_code' => $response->getStatusCode()
+                ]);
+
+                continue;
+            }
+
             $responses[$key] = $response->getBody();
         }
 

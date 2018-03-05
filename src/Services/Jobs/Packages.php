@@ -12,21 +12,33 @@
 namespace App\Services\Jobs;
 
 /**
- * Interface JobInterface
+ * Class Packages
+ *
  * @author Alexey Samara <lion.samara@gmail.com>
  * @package wow-apps/symfony-bundles
  */
-interface JobInterface
+class Packages implements JobInterface
 {
-    /**
-     * Method, that returns job name
-     * @return string
-     */
-    public function getJobName(): string;
+    const JOB_NAME = 'packages';
+
+    public function __construct()
+    {
+
+    }
 
     /**
-     * Method, that runs a job
+     * @return string
+     */
+    public function getJobName(): string
+    {
+        return self::JOB_NAME;
+    }
+
+    /**
      * @return void
      */
-    public function execute();
+    public function execute()
+    {
+        // TODO: Implement execute() method.
+    }
 }

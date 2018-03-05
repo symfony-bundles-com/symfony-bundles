@@ -58,6 +58,6 @@ class SymfonyBundlesJobIndexCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->job->run();
+        $this->job->execute();
     }
 }
