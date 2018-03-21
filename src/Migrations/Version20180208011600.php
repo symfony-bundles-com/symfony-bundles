@@ -12,6 +12,9 @@ class Version20180208011600 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
+        $this->addSql("ALTER TABLE sb_packages DROP id;");
+        $this->addSql("ALTER TABLE sb_packages ADD COLUMN repository VARCHAR(255) AFTER package_id;");
+        $this->addSql("ALTER TABLE sb_packages ADD COLUMN icon VARCHAR(255) AFTER author;");
         $this->addSql("ALTER TABLE sb_packages ADD COLUMN symfony_1 TINYINT(1) DEFAULT 0 AFTER stat_issues;");
         $this->addSql("ALTER TABLE sb_packages ADD COLUMN symfony_2 TINYINT(1) DEFAULT 0 AFTER symfony_1;");
         $this->addSql("ALTER TABLE sb_packages ADD COLUMN symfony_3 TINYINT(1) DEFAULT 0 AFTER symfony_2;");
@@ -20,6 +23,9 @@ class Version20180208011600 extends AbstractMigration
 
     public function down(Schema $schema)
     {
+        $this->addSql("ALTER TABLE sb_packages ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY FIRST;");
+        $this->addSql("ALTER TABLE sb_packages DROP COLUMN repository;");
+        $this->addSql("ALTER TABLE sb_packages DROP COLUMN icon;");
         $this->addSql("ALTER TABLE sb_packages DROP COLUMN symfony_1;");
         $this->addSql("ALTER TABLE sb_packages DROP COLUMN symfony_2;");
         $this->addSql("ALTER TABLE sb_packages DROP COLUMN symfony_3;");

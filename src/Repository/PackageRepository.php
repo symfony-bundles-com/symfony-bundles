@@ -13,6 +13,8 @@ namespace App\Repository;
 
 use App\Entity\Package;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\ORMException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -25,6 +27,9 @@ class PackageRepository extends ServiceEntityRepository
 {
     const TABLE_NAME = 'sb_packages';
 
+    /** @var EntityManager */
+    protected $entityManager;
+
     /**
      * PackageRepository constructor.
      * @param RegistryInterface $registry
@@ -32,6 +37,7 @@ class PackageRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Package::class);
+        $this->entityManager = $this->getEntityManager();
     }
 
     /**
@@ -52,18 +58,28 @@ class PackageRepository extends ServiceEntityRepository
 
     /**
      * @param array $packagesId
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
      */
     public function insertNewPackagesId(array $packagesId)
     {
-        $em = $this->getEntityManager();
-
         foreach ($packagesId as $packageId) {
             $package = new Package($packageId);
-            $em->persist($package);
+            $this->entityManager->persist($package);
         }
 
-        $em->flush();
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @param \ArrayObject|Package[] $entities
+     * @throws ORMException
+     */
+    public function update(\ArrayObject $entities)
+    {
+        foreach ($entities as $entity) {
+            $this->entityManager->merge($entity);
+        }
+
+        $this->entityManager->flush();
     }
 }

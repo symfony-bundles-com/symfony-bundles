@@ -29,22 +29,21 @@ class Package
     const TABLE_NAME = 'sb_packages';
 
     /**
-     * Internal package identifier
-     *
-     * @var integer
-     * @ORM\Column(name="id", type="integer", length=11)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id = 0;
-
-    /**
      * Package identifier on Packagist.org
      *
      * @var string
      * @ORM\Column(name="package_id", type="string", nullable=false, length=255)
+     * @ORM\Id
      */
     private $packageId = '';
+
+    /**
+     * Package repository url
+     *
+     * @var string
+     * @ORM\Column(name="repository", type="string", nullable=true, length=255)
+     */
+    private $repository = '';
 
     /**
      * @var string
@@ -75,6 +74,12 @@ class Package
      * @ORM\Column(name="author", type="string", nullable=true, length=255)
      */
     private $author = '';
+
+    /**
+     * @var string
+     * @ORM\Column(name="icon", type="string", nullable=true, length=255)
+     */
+    private $icon = '';
 
     /**
      * @var int
@@ -160,24 +165,6 @@ class Package
     }
 
     /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     * @return Package
-     */
-    public function setId(int $id): Package
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getPackageId(): string
@@ -192,6 +179,24 @@ class Package
     public function setPackageId(string $packageId): Package
     {
         $this->packageId = $packageId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRepository(): string
+    {
+        return $this->repository;
+    }
+
+    /**
+     * @param string $repository
+     * @return Package
+     */
+    public function setRepository(string $repository): Package
+    {
+        $this->repository = $repository;
         return $this;
     }
 
@@ -282,6 +287,24 @@ class Package
     public function setAuthor(string $author): Package
     {
         $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIcon(): string
+    {
+        return $this->icon;
+    }
+
+    /**
+     * @param string $icon
+     * @return Package
+     */
+    public function setIcon(string $icon): Package
+    {
+        $this->icon = $icon;
         return $this;
     }
 

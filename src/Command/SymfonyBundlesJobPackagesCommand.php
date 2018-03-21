@@ -34,7 +34,7 @@ class SymfonyBundlesJobPackagesCommand extends Command
      */
     protected function configure()
     {
-        $this->setDescription('Add a short description for your command');
+        $this->setDescription('Get mostly full information from Packagist');
     }
 
     /**
