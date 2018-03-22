@@ -12,6 +12,7 @@
 namespace App\Services\Jobs;
 
 use App\Traits\TextHelperTrait;
+use Doctrine\ORM\ORMException;
 use Psr\Log\LoggerInterface;
 use App\Repository\PackageRepository;
 use WowApps\PackagistBundle\Service\Packagist;
@@ -60,8 +61,7 @@ class IndexPackages implements JobInterface
 
     /**
      * @return void
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
      */
     public function execute()
     {
@@ -81,8 +81,7 @@ class IndexPackages implements JobInterface
     }
 
     /**
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
      */
     private function indexPackages()
     {
@@ -100,6 +99,16 @@ class IndexPackages implements JobInterface
             ['vendor' => 'null', 'package_type' => Packagist::PACKAGE_TYPE_SYMFONY]
         );
 
+        $removedPackages = 0;
+
+        foreach ($existsPackages as $key => $packageId) {
+            if (!in_array($packageId, $packagesList)) {
+                $this->logger->debug(sprintf('Package %s was removed from Packagist', $packageId));
+                unset($existsPackages[$key]);
+                ++$removedPackages;
+            }
+        }
+
         foreach ($packagesList as $key => $packageId) {
             if (in_array($packageId, $existsPackages)) {
                 $this->logger->debug(sprintf('Package %s already exists', $packageId));
@@ -114,5 +123,6 @@ class IndexPackages implements JobInterface
 
         $this->packageRepository->insertNewPackagesId($packagesList);
         $this->logger->info(sprintf('Added %d new packages', count($packagesList)));
+        $this->logger->info(sprintf('Removed %d packages', $removedPackages));
     }
 }
